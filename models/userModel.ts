@@ -37,6 +37,23 @@ const userModel = {
     }
     throw new Error(`Couldn't find user with id: ${id}`);
   },
+  findByGithubId: (githubId: string) => {
+    const user = database.find((user: any) => user.githubId === githubId);
+    return user || null;
+  },
+
+  createGithubUser: (profile: any) => {
+    const newUser = {
+      id: database.length + 1,
+      name: profile.displayName || profile.username,
+      githubId: profile.id,
+      email: profile.emails?.[0]?.value || null,
+      password: null,
+    };
+    database.push(newUser as any);
+    return newUser;
+  },
+
 };
 
 export { database, userModel };
