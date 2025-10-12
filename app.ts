@@ -47,6 +47,10 @@ app.use((req, res, next) => {
 app.use("/", indexRoute);
 app.use("/auth", authRoute);
 
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
 app.listen(port, () => {
   console.log(`🚀 Server has started on port ${port}`);
 });
