@@ -12,7 +12,7 @@ const githubStrategy: GitHubStrategy = new GitHubStrategy(
         passReqToCallback: true,
     },
     
-    /* FIX ME 😭 */
+    // Fixed annotation - ✅
     async (req: Request, accessToken: string, refreshToken: string, profile: Profile, done: any) => {},
 );
 

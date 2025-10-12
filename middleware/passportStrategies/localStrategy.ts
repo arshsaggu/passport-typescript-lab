@@ -18,17 +18,13 @@ const localStrategy = new LocalStrategy(
   }
 );
 
-/*
-FIX ME (types) 😭
-*/
-passport.serializeUser(function (user: any, done: any) {
+// Fixed annotation - ✅ (Partially)
+passport.serializeUser(function (user: any, done: (err: any, id?: number) => void) {
   done(null, user.id);
 });
 
-/*
-FIX ME (types) 😭
-*/
-passport.deserializeUser(function (id: any, done: any) {
+// Fixed annotation - ✅
+passport.deserializeUser(function (id: number, done: (err: any, user?: any | false) => void) {
   let user = getUserById(id);
   if (user) {
     done(null, user);
