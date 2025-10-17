@@ -1,0 +1,48 @@
+<div class="row mt-5">
+    <div class="col-md-8 m-auto">
+        <div class="card card-body">
+            <h1 class="text-center mb-3">Admin Dashboard</h1>
+            <p class="lead text-center">Manage Active Sessions</p>
+
+            <h3>Current Active Sessions:</h3>
+
+            <% if (sessions.length===0) { %>
+                <p>No active sessions found.</p>
+                <% } else { %>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Session ID</th>
+                                <th>User ID</th>
+                                <th>User Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% sessions.forEach(session=> { %>
+                                <tr>
+                                    <td>
+                                        <%= session.id %>
+                                    </td>
+                                    <td>
+                                        <%= session.userId %>
+                                    </td>
+                                    <td>
+                                        <%= session.userName || 'N/A' %>
+                                    </td>
+                                    <td>
+                                        <form action="/admin/revoke/<%= session.id %>" method="POST"
+                                            style="display: inline;">
+                                            <button type="submit" class="btn btn-danger btn-sm">Revoke Session</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </tbody>
+                    </table>
+                    <% } %>
+
+                        <a href="/dashboard" class="btn btn-secondary mt-3">Back to Dashboard</a>
+        </div>
+    </div>
+</div>
